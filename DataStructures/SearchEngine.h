@@ -58,6 +58,7 @@ public:
 	inline const void GetCoordinatesForNodeID(NodeID id, _Coordinate& result) const {
 		result.lat = nodeHelpDesk->getLatitudeOfNode(id);
 		result.lon = nodeHelpDesk->getLongitudeOfNode(id);
+    result.id = nodeHelpDesk->getOSMIDOfNode(id);
 	}
 
 	inline void InitializeThreadLocalStorageIfNecessary() {

@@ -22,6 +22,7 @@ or see http://www.gnu.org/licenses/agpl.txt.
 #define POLYLINECOMPRESSOR_H_
 
 #include <string>
+#include <boost/lexical_cast.hpp>
 
 #include "../DataStructures/ExtractorStructs.h"
 #include "../DataStructures/SegmentInformation.h"
@@ -122,6 +123,8 @@ public:
             convertInternalLatLonToString(polyline[i].location.lon, tmp);
             output += ", ";
             output += tmp;
+            output += ", ";
+            output += boost::lexical_cast<std::string>(polyline[i].location.id);
             output += "]";
             if( i < polyline.size()-1 ) {
                 output += ",";
