@@ -60,11 +60,14 @@ struct _Node : NodeInfo{
 struct _Coordinate {
     int lat;
     int lon;
-    _Coordinate () : lat(INT_MIN), lon(INT_MIN) {}
+    long id;
+    _Coordinate () : lat(INT_MIN), lon(INT_MIN), id(LONG_MIN) {}
+    _Coordinate (int t, int n, long i) : lat(t) , lon(n), id(i) {}
     _Coordinate (int t, int n) : lat(t) , lon(n) {}
     void Reset() {
         lat = INT_MIN;
         lon = INT_MIN;
+        id = LONG_MIN;
     }
     bool isSet() const {
         return (INT_MIN != lat) && (INT_MIN != lon);
