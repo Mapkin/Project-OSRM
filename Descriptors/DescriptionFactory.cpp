@@ -165,7 +165,13 @@ void DescriptionFactory::Run(const SearchEngineT &sEngine, const unsigned zoomLe
     }
 
     //Generalize poly line
-    dp.Run(pathDescription, zoomLevel);
+    //dp.Run(pathDescription, zoomLevel);
+    typedef std::vector<SegmentInformation>::iterator Iterator;
+    Iterator begin = pathDescription.begin();
+    Iterator end = pathDescription.end();
+    for (Iterator it=begin; it != end; ++it) {
+      (*it).necessary = true;
+    }
 
     //fix what needs to be fixed else
     for(unsigned i = 0; i < pathDescription.size()-1 && pathDescription.size() >= 2; ++i){
