@@ -123,6 +123,7 @@ public:
 	inline const void GetCoordinatesForNodeID(NodeID id, _Coordinate& result) const {
 		result.lat = _queryData.nodeHelpDesk->getLatitudeOfNode(id);
 		result.lon = _queryData.nodeHelpDesk->getLongitudeOfNode(id);
+    result.id = _queryData.nodeHelpDesk->getOSMIDOfNode(id);
 	}
 
 	inline void FindRoutingStarts(const _Coordinate & start, const _Coordinate & target, PhantomNodes & routingStarts) const {
