@@ -80,7 +80,8 @@ public:
                         if("jsonp" != p && "hint" != p)
                             std::transform(o.begin(), o.end(), o.begin(), (int(*)(int)) std::tolower);
                         if("loc" == p) {
-                            if(25 >= routeParameters.viaPoints.size()) {
+                            /* TODO: 25 was changed to 100 for Mapkin purposes! */
+                            if(100 >= routeParameters.viaPoints.size()) {
                                 routeParameters.viaPoints.push_back(o);
                             }
                         } else if("hint" == p) {
