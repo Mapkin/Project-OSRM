@@ -43,7 +43,7 @@ private:
     //Stack to simulate the recursion
     std::stack<PairOfPoints > recursionStack;
 
-    double ComputeDistanceOfPointToLine(const _Coordinate& inputPoint, const _Coordinate& source, const _Coordinate& target) {
+    double ComputeDistanceOfPointToLine(const _Coordinate& inputPoint, const _Coordinate& source, const _Coordinate& target) const {
         double r;
         const double x = (double)inputPoint.lat;
         const double y = (double)inputPoint.lon;

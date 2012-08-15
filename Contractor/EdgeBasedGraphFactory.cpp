@@ -30,7 +30,7 @@
 #include "EdgeBasedGraphFactory.h"
 
 template<>
-EdgeBasedGraphFactory::EdgeBasedGraphFactory(int nodes, std::vector<NodeBasedEdge> & inputEdges, std::vector<NodeID> & bn, std::vector<NodeID> & tl, std::vector<_Restriction> & irs, std::vector<NodeInfo> & nI, boost::property_tree::ptree speedProfile, std::string & srtm) : inputNodeInfoList(nI), numberOfTurnRestrictions(irs.size()), trafficSignalPenalty(0) {
+EdgeBasedGraphFactory::EdgeBasedGraphFactory(int nodes, std::vector<NodeBasedEdge> & inputEdges, std::vector<NodeID> & bn, std::vector<NodeID> & tl, std::vector<_Restriction> & irs, std::vector<NodeInfo> & nI, boost::property_tree::ptree speedProfile, std::string & srtm) : inputNodeInfoList(nI), numberOfTurnRestrictions(irs.size()), trafficSignalPenalty(0), uturnPenalty(0), takeMinimumOfSpeeds(false) {
     BOOST_FOREACH(_Restriction & restriction, irs) {
         std::pair<NodeID, NodeID> restrictionSource = std::make_pair(restriction.fromNode, restriction.viaNode);
         unsigned index;
@@ -353,12 +353,12 @@ void EdgeBasedGraphFactory::Run(const char * originalEdgeDataFilename) {
     std::sort(edgeBasedNodes.begin(), edgeBasedNodes.end());
     INFO("Removing duplicate nodes (if any)");
     edgeBasedNodes.erase( std::unique(edgeBasedNodes.begin(), edgeBasedNodes.end()), edgeBasedNodes.end() );
-    INFO("Applying vector self-swap trick to free up memory");
-    INFO("size: " << edgeBasedNodes.size() << ", cap: " << edgeBasedNodes.capacity());
+//    INFO("Applying vector self-swap trick to free up memory");
+//    INFO("size: " << edgeBasedNodes.size() << ", cap: " << edgeBasedNodes.capacity());
     std::vector<EdgeBasedNode>(edgeBasedNodes).swap(edgeBasedNodes);
-    INFO("size: " << edgeBasedNodes.size() << ", cap: " << edgeBasedNodes.capacity());
+//    INFO("size: " << edgeBasedNodes.size() << ", cap: " << edgeBasedNodes.capacity());
     INFO("Node-based graph contains " << nodeBasedEdgeCounter     << " edges");
-    INFO("Edge-based graph contains " << edgeBasedEdges.size()    << " edges, blowup is " << (double)edgeBasedEdges.size()/(double)nodeBasedEdgeCounter);
+//    INFO("Edge-based graph contains " << edgeBasedEdges.size()    << " edges, blowup is " << 2*((double)edgeBasedEdges.size()/(double)nodeBasedEdgeCounter));
     INFO("Edge-based graph skipped "  << numberOfSkippedTurns     << " turns, defined by " << numberOfTurnRestrictions << " restrictions.");
     INFO("Generated " << edgeBasedNodes.size() << " edge based nodes");
 }
